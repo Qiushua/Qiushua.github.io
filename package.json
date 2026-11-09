@@ -1,0 +1,16 @@
+{
+  "name": "github-blog-preview-tools",
+  "private": true,
+  "description": "本地预览工具依赖（仅开发用，不会部署到网站）",
+  "scripts": {
+    "preview": "node scripts/build-preview.js && node scripts/preview-server.js 8766 _preview",
+    "build:preview": "node scripts/build-preview.js",
+    "check": "node scripts/check.js",
+    "validate": "node scripts/validate-liquid.js"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "liquidjs": "^10.15.0",
+    "marked": "^12.0.0"
+  }
+}

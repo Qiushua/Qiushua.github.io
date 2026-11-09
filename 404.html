@@ -1,0 +1,53 @@
+---
+layout: null
+permalink: /404.html
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'zh-CN' }}" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页面走丢了 · {{ site.title }}</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="你访问的页面不存在，可能是链接过期或地址输错了。">
+  <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="layout-404">
+  {% include header.html %}
+
+  <main class="site-main">
+    <div class="container">
+      <section class="error-page">
+        <p class="error-page__code">404</p>
+        <h1 class="page__title">这一页好像不存在</h1>
+        <p class="page__description">
+          可能是链接过期了，或者地址拼错了一个字母。<br>
+          从下面的地方继续逛吧：
+        </p>
+        <p style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <a class="btn btn--primary" href="{{ '/' | relative_url }}">回到首页</a>
+          <a class="btn btn--ghost" href="{{ '/posts/' | relative_url }}">看看全部 {{ site.posts.size }} 篇文章</a>
+        </p>
+        <p style="margin-top: 22px; font-size: 0.85rem; color: var(--muted-2);">
+          也可以试试搜索：<a href="{{ '/search/' | relative_url }}">/search/</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  {% include footer.html %}
+  <script>window.SITE = { baseurl: {{ site.baseurl | jsonify }} };</script>
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</body>
+</html>

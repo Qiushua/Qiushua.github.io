@@ -1,0 +1,21 @@
+---
+layout: null
+permalink: /search.json
+sitemap: false
+---
+[
+  {%- for post in site.posts %}
+  {%- assign post_desc = post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 200 %}
+  {%- assign post_text = post.content | strip_html | strip_newlines | replace: "  ", " " | truncate: 3000 %}
+  {%- assign post_url = post.url | relative_url %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post_url | jsonify }},
+    "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+    "categories": {{ post.categories | jsonify }},
+    "tags": {{ post.tags | jsonify }},
+    "description": {{ post_desc | jsonify }},
+    "content": {{ post_text | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {%- endfor %}
+]

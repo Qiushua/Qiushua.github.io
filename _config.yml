@@ -1,0 +1,122 @@
+# ============================================================================
+#  站点总配置  ——  你只需要认真改这一个文件，就能把博客变成自己的
+#  每项后面的注释说明它影响网站上的哪个部分。改完提交，1~2 分钟后生效。
+# ============================================================================
+
+# ---------- 1. 基本信息（必改） --------------------------------------------
+title: 我的博客                         # 站点名：显示在浏览器标签、页头 Logo、页脚
+tagline: 记录、思考与折腾                 # 一句话简介：显示在页头 Logo 下方、首页大标题下
+description: >-                         # 站点描述：搜索引擎和社交分享卡片用
+  这是我的个人博客，用来记录学习、工作与生活中的思考。
+  在这里写下读书笔记、技术总结和一些不成体系的想法。
+
+# 你的域名。首次用 GitHub 默认域名时可先留空（见 docs/部署指南.md）
+# 配好自定义域名后填 https://your-domain.com，末尾不要加斜杠
+url: ""
+# 网站部署在子路径时才需要填，例如 "/blog"。用自定义域名或 username.github.io 仓库时留空
+baseurl: ""
+
+# 网站语言（影响浏览器判定语言、字体渲染）
+lang: zh-CN
+
+# 时区：决定文章日期的显示基准，东八区写 Asia/Shanghai
+timezone: Asia/Shanghai
+
+# ---------- 2. 作者信息（必改） --------------------------------------------
+author:
+  name: 你的名字
+  bio: 前端工程师 / 长期主义者 / 业余摄影爱好者
+  # 头像：把图片放到 assets/images/ 下再改这里；可以换成你的 GitHub 头像地址
+  avatar: /assets/images/avatar.svg
+  location: 中国 · 杭州
+  email: hello@example.com
+  # 社交链接：只保留你想展示的，删掉不需要的行即可
+  links:
+    - label: GitHub
+      url: https://github.com/yourname
+    - label: 微博
+      url: https://weibo.com/yourname
+    - label: RSS
+      url: /feed.xml
+
+# ---------- 3. 导航栏（想加页面就在这里加一行） -----------------------------
+header_pages:
+  - title: 首页
+    url: /
+  - title: 文章
+    url: /posts/
+  - title: 分类
+    url: /categories/
+  - title: 归档
+    url: /archive/
+  - title: 关于
+    url: /about/
+  - title: 搜索
+    url: /search/
+
+# ---------- 4. 首页文案（必改） --------------------------------------------
+hero:
+  kicker: 欢迎来到我的数字花园
+  title: 你好，我是你的名字
+  # 支持 Markdown 语法，可以用 **加粗** 或 [链接](https://example.com)
+  subtitle: >-
+    我在这里记录读过的书、写过的代码和想过的事。
+    如果某篇文章正好帮到你，欢迎通过文末的方式和我聊聊。
+
+# ---------- 5. 写文章相关（建议了解） --------------------------------------
+# 文章网址格式：/posts/文章文件名/ ，改文件名会改变网址，发布后尽量别改
+permalink: /posts/:title/
+
+# 首页"最新文章"显示几篇（分类页、标签页也复用这个数量上限）
+home_post_limit: 6
+
+# 中文阅读速度（字/分钟），用来估算"阅读约 X 分钟"
+words_per_minute: 300
+
+# ---------- 6. 构建设置（一般不用动） --------------------------------------
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+  auto_ids: true
+  toc_levels: 1..3
+
+plugins:
+  - jekyll-feed        # 自动生成 /feed.xml（RSS 订阅）
+  - jekyll-seo-tag     # 自动生成标题、描述、Open Graph 等 SEO 标签
+  - jekyll-sitemap     # 自动生成 /sitemap.xml（给搜索引擎）
+
+feed:
+  excerpt_only: false  # 设为 true 则 RSS 只输出摘要
+
+sass:
+  style: compressed
+
+exclude:
+  - docs
+  - scripts
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - README.md
+  - LICENSE
+  - vendor
+  - .github
+  - node_modules
+  - _preview
+
+# ---------- 7. 默认值：让每篇文章自动套用布局 ------------------------------
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
