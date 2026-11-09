@@ -12,7 +12,7 @@ description: >-                         # 站点描述：搜索引擎和社交�
 
 # 你的域名。首次用 GitHub 默认域名时可先留空（见 docs/部署指南.md）
 # 配好自定义域名后填 https://your-domain.com，末尾不要加斜杠
-url: ""
+url: "https://qiushuai.vip"
 # 网站部署在子路径时才需要填，例如 "/blog"。用自定义域名或 username.github.io 仓库时留空
 baseurl: ""
 
