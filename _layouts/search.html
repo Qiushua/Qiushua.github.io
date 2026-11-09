@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<div class="container container--narrow">
+  <header class="page__header page__header--center">
+    <p class="kicker">Search</p>
+    <h1 class="page__title">搜索</h1>
+    <p class="page__description">在全部文章里搜索标题、摘要和正文</p>
+  </header>
+
+  <div class="search-hero">
+    <div class="search-field search-field--lg">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="searchInput" class="search-field__input" placeholder="输入关键词，例如：Markdown、部署、读书…" aria-label="搜索文章" autocomplete="off">
+    </div>
+    <div class="search-tips" id="searchTips">
+      {%- assign tag_pool = "" %}
+      {%- for post in site.posts limit: 20 %}
+        {%- for tag in post.tags %}
+          {%- unless tag_pool contains tag %}{% assign tag_pool = tag_pool | append: tag | append: "," %}{% endunless %}
+        {%- endfor %}
+      {%- endfor %}
+      试试这些关键词：
+      {%- assign tags = tag_pool | split: "," %}
+      {%- for t in tags limit: 6 %}
+      <button type="button" class="chip chip--sm" data-q="{{ t }}">{{ t }}</button>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <p class="search-status" id="searchStatus" aria-live="polite">输入关键词开始搜索，共 {{ site.posts.size }} 篇文章可供检索。</p>
+  <div class="search-results" id="searchResults"></div>
+</div>

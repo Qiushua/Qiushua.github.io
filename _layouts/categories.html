@@ -1,0 +1,42 @@
+---
+layout: default
+---
+<div class="container">
+  <header class="page__header page__header--center">
+    <p class="kicker">Categories</p>
+    <h1 class="page__title">分类</h1>
+    <p class="page__description">共 {{ site.categories.size }} 个分类</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="listSearch" class="search-field__input" placeholder="筛选分类或文章标题…" aria-label="筛选">
+    </div>
+  </div>
+
+  <p class="list-count" id="listCount" aria-live="polite"></p>
+  <p class="list-empty" id="listEmpty" hidden>没有找到匹配的内容。</p>
+
+  {%- assign sorted_cats = site.categories | sort %}
+  <div class="cat-sections">
+    {%- for cat in sorted_cats %}
+    <section class="cat-section" id="{{ cat[0] | slugify }}">
+      <h2 class="cat-section__title">
+        {{ cat[0] }}
+        <span class="cat-section__count">{{ cat[1].size }} 篇</span>
+      </h2>
+      <div class="post-list">
+        {%- for post in cat[1] %}
+        <article class="list-item" data-post data-title="{{ post.title | escape }}" data-cat="{{ cat[0] }}">
+          <a class="list-item__link" href="{{ post.url | relative_url }}">
+            <time class="list-item__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            <span class="list-item__title">{{ post.title }}</span>
+          </a>
+        </article>
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endfor %}
+  </div>
+</div>

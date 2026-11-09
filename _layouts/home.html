@@ -1,0 +1,80 @@
+---
+layout: default
+---
+{%- assign featured = site.posts | where_exp: "p", "p.featured == true" %}
+{%- assign latest = site.posts | slice: 0, site.home_post_limit %}
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      {%- if site.hero.kicker %}<p class="kicker">{{ site.hero.kicker }}</p>{% endif %}
+      <h1 class="hero__title">{{ site.hero.title | default: site.title }}</h1>
+      {%- if site.hero.subtitle %}
+      <p class="hero__subtitle">{{ site.hero.subtitle | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+      {%- endif %}
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="{{ '/posts/' | relative_url }}">读文章</a>
+        <a class="btn btn--ghost" href="{{ '/about/' | relative_url }}">关于我</a>
+      </div>
+      <ul class="hero__facts">
+        <li><strong>{{ site.posts.size }}</strong> 篇文章</li>
+        {%- assign cat_count = site.categories.size %}
+        <li><strong>{{ cat_count }}</strong> 个分类</li>
+        <li>更新于 <strong>{{ site.time | date: "%Y-%m" }}</strong></li>
+      </ul>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__card">
+        <img src="{{ site.author.avatar | default: '/assets/images/avatar.svg' | relative_url }}" alt="" width="96" height="96" class="hero__avatar">
+        <p class="hero__name">{{ site.author.name }}</p>
+        <p class="hero__bio">{{ site.author.bio }}</p>
+        {%- if site.author.location %}<p class="hero__loc">{{ site.author.location }}</p>{% endif %}
+      </div>
+      <div class="hero__blob"></div>
+    </div>
+  </div>
+</section>
+
+{%- if featured.size > 0 %}
+<section class="section container">
+  <div class="section__head">
+    <h2 class="section__title">精选文章</h2>
+    <p class="section__sub">我自己最想让你先读的几篇</p>
+  </div>
+  <div class="card-grid card-grid--wide">
+    {%- for post in featured limit: 3 %}
+      {% include post-card.html post=post variant="wide" %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+<section class="section container">
+  <div class="section__head">
+    <h2 class="section__title">最新文章</h2>
+    <a class="section__more" href="{{ '/posts/' | relative_url }}">全部文章 →</a>
+  </div>
+  <div class="card-grid">
+    {%- for post in latest %}
+      {% include post-card.html post=post %}
+    {%- endfor %}
+  </div>
+</section>
+
+{%- if site.categories.size > 0 %}
+<section class="section container">
+  <div class="section__head">
+    <h2 class="section__title">按分类浏览</h2>
+  </div>
+  <ul class="chip-row">
+    {%- for cat in site.categories %}
+    <li>
+      <a class="chip" href="{{ '/categories/' | relative_url }}#{{ cat[0] | slugify }}">
+        {{ cat[0] }}<span class="chip__count">{{ cat[1].size }}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}

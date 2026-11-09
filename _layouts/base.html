@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'zh-CN' }}" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.title != site.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+  {%- if page.excerpt and page.layout == 'post' %}
+  <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+  {%- else %}
+  <meta name="description" content="{{ site.description | strip_html | strip_newlines | truncate: 160 }}">
+  {%- endif %}
+
+  {% seo title=false %}
+
+  <!-- 主题色：跟随浏览器地址栏（移动端） -->
+  <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
+
+  <!-- 图标：可以直接替换成自己的 favicon.ico -->
+  <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+  <link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | relative_url }}">
+
+  <!-- 让浏览器提前建立字体连接（可选，不影响功能） -->
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- 在页面渲染前就定好明暗主题，避免刷新时闪白 -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="layout-{{ page.layout | default: 'page' }}">
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  {% include header.html %}
+
+  <main id="main" class="site-main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="回到顶部" hidden>
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- 站点配置，供 site.js 使用 -->
+  <script>
+    window.SITE = {
+      baseurl: {{ site.baseurl | jsonify }},
+      lang: {{ site.lang | jsonify }}
+    };
+  </script>
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+  {% if page.layout == 'post' %}<script src="{{ '/assets/js/post.js' | relative_url }}" defer></script>{% endif %}
+  {% if page.layout == 'home' or page.layout == 'posts' or page.layout == 'archive' %}<script src="{{ '/assets/js/list.js' | relative_url }}" defer></script>{% endif %}
+  {% if page.search %}<script src="{{ '/assets/js/search.js' | relative_url }}" defer></script>{% endif %}
+</body>
+</html>

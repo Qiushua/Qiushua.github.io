@@ -1,0 +1,23 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__meta">
+      <p class="site-footer__copy">
+        &copy; {{ site.time | date: "%Y" }} {{ site.author.name | default: site.title }}
+        <span class="dot">·</span>
+        <span>保留所有权利</span>
+      </p>
+      <p class="site-footer__powered">
+        由 <a href="https://jekyllrb.com/" rel="noopener" target="_blank">Jekyll</a> 驱动，
+        托管于 <a href="https://pages.github.com/" rel="noopener" target="_blank">GitHub Pages</a>
+      </p>
+    </div>
+
+    {%- if site.author.links and site.author.links.size > 0 %}
+    <ul class="site-footer__links">
+      {%- for link in site.author.links %}
+      <li><a href="{% if link.url contains '://' %}{{ link.url }}{% else %}{{ link.url | relative_url }}{% endif %}" rel="noopener">{{ link.label }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</footer>

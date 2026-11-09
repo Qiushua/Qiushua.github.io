@@ -1,0 +1,43 @@
+{%- comment -%}
+  文章卡片组件。用法：
+    {% include post-card.html post=post %}
+    {% include post-card.html post=post variant="wide" %}
+{%- endcomment -%}
+{%- assign p = include.post %}
+{%- assign variant = include.variant | default: "grid" %}
+
+<article class="card card--{{ variant }}" data-post data-cat="{{ p.categories | first | default: '未分类' }}" data-title="{{ p.title | escape }}" data-tags="{{ p.tags | join: ' ' | escape }}">
+  <a class="card__media" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
+    {%- if p.cover %}
+    <img src="{{ p.cover | relative_url }}" alt="" loading="lazy" decoding="async" width="800" height="450">
+    {%- else %}
+    <span class="card__ph" data-initial="{{ p.categories | first | default: '随' | slice: 0, 1 }}"></span>
+    {%- endif %}
+  </a>
+
+  <div class="card__body">
+    <p class="card__meta">
+      {%- if p.categories.size > 0 %}
+      <span class="card__cat">{{ p.categories | first }}</span>
+      <span class="dot">·</span>
+      {%- endif %}
+      <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%Y-%m-%d" }}</time>
+    </p>
+
+    <h3 class="card__title">
+      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+    </h3>
+
+    {%- if p.description %}
+    <p class="card__desc">{{ p.description }}</p>
+    {%- endif %}
+
+    {%- if p.tags.size > 0 %}
+    <ul class="card__tags">
+      {%- for tag in p.tags limit: 3 %}
+      <li>#{{ tag }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</article>

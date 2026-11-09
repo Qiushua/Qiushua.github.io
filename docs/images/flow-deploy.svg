@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="400" viewBox="0 0 1000 400" role="img" aria-label="博客发布流程示意图">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#faf7f2"/>
+      <stop offset="1" stop-color="#f1e9dc"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b04a2a"/>
+    </marker>
+  </defs>
+
+  <rect width="1000" height="400" fill="url(#bg)"/>
+  <text x="40" y="52" font-family="'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif" font-size="15" font-weight="700" letter-spacing="4" fill="#b04a2a">发布流程</text>
+  <text x="40" y="84" font-family="'Noto Serif SC','Songti SC',serif" font-size="26" font-weight="700" fill="#1b1a17">一篇 Markdown 文章是怎样变成网页的</text>
+
+  <!-- 节点 1 -->
+  <g>
+    <rect x="40" y="130" width="210" height="150" rx="14" fill="#fffdf9" stroke="#e4dbcc" stroke-width="2"/>
+    <rect x="64" y="156" width="34" height="42" rx="4" fill="#f3e2d9"/>
+    <text x="81" y="184" text-anchor="middle" font-family="monospace" font-size="16" fill="#b04a2a">md</text>
+    <text x="112" y="172" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="700" fill="#1b1a17">本地写作</text>
+    <text x="112" y="194" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">_posts/2026-11-10-xxx.md</text>
+    <text x="64" y="232" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">git add / commit / push</text>
+    <text x="64" y="254" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">推送到 GitHub 仓库</text>
+  </g>
+
+  <line x1="262" y1="205" x2="318" y2="205" stroke="#b04a2a" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 节点 2 -->
+  <g>
+    <rect x="332" y="130" width="210" height="150" rx="14" fill="#fffdf9" stroke="#e4dbcc" stroke-width="2"/>
+    <circle cx="376" cy="176" r="16" fill="none" stroke="#b04a2a" stroke-width="2"/>
+    <path d="M368 176 l6 7 l12 -14" fill="none" stroke="#b04a2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="404" y="172" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="700" fill="#1b1a17">GitHub 构建</text>
+    <text x="404" y="194" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">Pages 自动识别 Jekyll</text>
+    <text x="356" y="232" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">套用 _layouts 模板</text>
+    <text x="356" y="254" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">生成静态 HTML / CSS</text>
+  </g>
+
+  <line x1="554" y1="205" x2="610" y2="205" stroke="#b04a2a" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 节点 3 -->
+  <g>
+    <rect x="624" y="130" width="150" height="150" rx="14" fill="#fffdf9" stroke="#e4dbcc" stroke-width="2"/>
+    <circle cx="668" cy="176" r="16" fill="none" stroke="#3f8f5f" stroke-width="2"/>
+    <circle cx="668" cy="176" r="5" fill="#3f8f5f"/>
+    <text x="696" y="172" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="16" font-weight="700" fill="#1b1a17">CDN</text>
+    <text x="648" y="212" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">全球加速分发</text>
+    <text x="648" y="234" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">自动 HTTPS</text>
+    <text x="648" y="256" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#756c5f">无需服务器运维</text>
+  </g>
+
+  <line x1="786" y1="205" x2="842" y2="205" stroke="#b04a2a" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 节点 4 -->
+  <g>
+    <rect x="856" y="130" width="110" height="150" rx="14" fill="#1b1a17"/>
+    <circle cx="911" cy="166" r="20" fill="none" stroke="#f3e2d9" stroke-width="2.5"/>
+    <path d="M900 166 a11 11 0 0 1 22 0 a11 11 0 0 1 -22 0" fill="none" stroke="#f3e2d9" stroke-width="2"/>
+    <text x="911" y="216" text-anchor="middle" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="13" font-weight="700" fill="#faf7f2">访客</text>
+    <text x="911" y="238" text-anchor="middle" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="11" fill="#cfc8bd">example.com</text>
+  </g>
+
+  <!-- 底部 DNS 说明 -->
+  <g>
+    <rect x="40" y="308" width="926" height="58" rx="10" fill="#fffdf9" stroke="#e4dbcc" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="62" y="332" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="700" fill="#b04a2a">DNS 的作用</text>
+    <text x="62" y="352" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#3d3933">在域名服务商处把 example.com 的 A 记录指向 185.199.108.153 等 4 个 GitHub 地址，把 www 的 CNAME 指向 你的用户名.github.io</text>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="container">
+  <header class="page__header page__header--center">
+    <p class="kicker">Archive</p>
+    <h1 class="page__title">全部文章</h1>
+    <p class="page__description">共 {{ site.posts.size }} 篇 · 按时间从新到旧排列</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="listSearch" class="search-field__input" placeholder="在当前列表中筛选标题…" aria-label="筛选文章">
+    </div>
+    <div class="toolbar__select">
+      <label for="catFilter" class="visually-hidden">按分类筛选</label>
+      <select id="catFilter">
+        <option value="">全部分类</option>
+        {%- assign cats = site.categories | sort %}
+        {%- for cat in cats %}
+        <option value="{{ cat[0] | escape }}">{{ cat[0] }}（{{ cat[1].size }}）</option>
+        {%- endfor %}
+      </select>
+    </div>
+  </div>
+
+  <p class="list-count" id="listCount" aria-live="polite">共 {{ site.posts.size }} 篇</p>
+  <p class="list-empty" id="listEmpty" hidden>没有找到匹配的文章，试试别的关键词。</p>
+
+  <div class="post-list" id="postList">
+    {%- for post in site.posts %}
+    <article class="list-item" data-post data-title="{{ post.title | escape }}" data-cat="{{ post.categories | first }}">
+      <a class="list-item__link" href="{{ post.url | relative_url }}">
+        <time class="list-item__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+        <span class="list-item__title">{{ post.title }}</span>
+        {%- if post.categories.size > 0 %}
+        <span class="list-item__cat">{{ post.categories | first }}</span>
+        {%- endif %}
+      </a>
+    </article>
+    {%- endfor %}
+  </div>
+</div>

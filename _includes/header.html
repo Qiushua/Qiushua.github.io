@@ -1,0 +1,40 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} 首页">
+      <span class="brand__mark" aria-hidden="true">{{ site.title | slice: 0, 1 }}</span>
+      <span class="brand__text">
+        <strong class="brand__name">{{ site.title }}</strong>
+        {%- if site.tagline %}
+        <span class="brand__tagline">{{ site.tagline }}</span>
+        {%- endif %}
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="主导航">
+      <input type="checkbox" id="navToggle" class="nav-toggle" aria-label="展开或收起导航菜单">
+      <label for="navToggle" class="nav-toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+
+      <ul class="site-nav__list">
+        {%- for item in site.header_pages %}
+        {%- assign item_url = item.url | relative_url %}
+        {%- assign is_active = false %}
+        {%- if page.url == item.url %}{% assign is_active = true %}{% endif %}
+        {%- if item.url != '/' and page.url contains item.url %}{% assign is_active = true %}{% endif %}
+        <li>
+          <a class="site-nav__link{% if is_active %} is-active{% endif %}"
+             href="{{ item_url }}"
+             {% if is_active %}aria-current="page"{% endif %}>{{ item.title }}</a>
+        </li>
+        {%- endfor %}
+        <li>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换明暗主题" title="切换明暗主题">
+            <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20.5 14.2A8.6 8.6 0 0 1 9.8 3.5a8.6 8.6 0 1 0 10.7 10.7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

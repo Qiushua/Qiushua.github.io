@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="写一篇文章的五个步骤">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#faf7f2"/>
+      <stop offset="1" stop-color="#f4ece0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="430" fill="url(#bg2)"/>
+  <text x="40" y="50" font-family="'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif" font-size="15" font-weight="700" letter-spacing="4" fill="#b04a2a">写作流程</text>
+  <text x="40" y="82" font-family="'Noto Serif SC','Songti SC',serif" font-size="26" font-weight="700" fill="#1b1a17">写一篇新文章：五个步骤，大约三分钟</text>
+
+  <!-- 步骤 -->
+  <g font-family="'Noto Sans SC','Microsoft YaHei',sans-serif">
+    <!-- 1 -->
+    <rect x="40" y="120" width="168" height="170" rx="14" fill="#fffdf9" stroke="#e4dbcc" stroke-width="2"/>
+    <circle cx="66" cy="146" r="13" fill="#b04a2a"/>
+    <text x="66" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
+    <text x="58" y="188" font-size="15" font-weight="700" fill="#1b1a17">新建文件</text>
+    <text x="58" y="212" font-size="11.5" fill="#756c5f">复制 _posts/ 里的模板</text>
+    <text x="58" y="231" font-size="11.5" fill="#756c5f">改名为</text>
+    <text x="58" y="250" font-size="9.5" fill="#b04a2a" font-family="monospace">2026-11-10-title.md</text>
+    <text x="58" y="270" font-size="11" fill="#756c5f">或运行 new-post 脚本</text>
+
+    <!-- 2 -->
+    <rect x="228" y="120" width="168" height="170" rx="14" fill="#fffdf9" stroke="#e4dbcc" stroke-width="2"/>
+    <circle cx="254" cy="146" r="13" fill="#b04a2a"/>
+    <text x="254" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
+    <text x="246" y="188" font-size="15" font-weight="700" fill="#1b1a17">填写头部</text>
+    <text x="246" y="212" font-size="11.5" fill="#756c5f">title / date</text>
+    <text x="246" y="231" font-size="11.5" fill="#756c5f">description 摘要</text>
+    <text x="246" y="250" font-size="11.5" fill="#756c5f">categories 分类</text>
+    <text x="246" y="269" font-size="11.5" fill="#756c5f">tags 标签</text>
+
+    <!-- 3 -->
+    <rect x="416" y="120" width="168" height="170" rx="14" fill="#fffdf9" stroke="#e4dbcc" stroke-width="2"/>
+    <circle cx="442" cy="146" r="13" fill="#b04a2a"/>
+    <text x="442" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
+    <text x="434" y="188" font-size="15" font-weight="700" fill="#1b1a17">写正文</text>
+    <text x="434" y="212" font-size="11.5" fill="#756c5f">用 ## 写小标题</text>
+    <text x="434" y="231" font-size="11.5" fill="#756c5f">图片放 assets/images</text>
+    <text x="434" y="250" font-size="11.5" fill="#756c5f">代码块标注语言</text>
+    <text x="434" y="269" font-size="11.5" fill="#756c5f">保存为 UTF-8</text>
+
+    <!-- 4 -->
+    <rect x="604" y="120" width="168" height="170" rx="14" fill="#fffdf9" stroke="#e4dbcc" stroke-width="2"/>
+    <circle cx="630" cy="146" r="13" fill="#b04a2a"/>
+    <text x="630" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">4</text>
+    <text x="622" y="188" font-size="15" font-weight="700" fill="#1b1a17">本地预览</text>
+    <text x="622" y="212" font-size="11.5" fill="#756c5f">bundle exec jekyll serve</text>
+    <text x="622" y="231" font-size="11.5" fill="#756c5f">打开 127.0.0.1:4000</text>
+    <text x="622" y="250" font-size="11.5" fill="#756c5f">检查排版和错字</text>
+    <text x="622" y="269" font-size="11.5" fill="#756c5f">运行 node scripts/check.js</text>
+
+    <!-- 5 -->
+    <rect x="792" y="120" width="168" height="170" rx="14" fill="#1b1a17"/>
+    <circle cx="818" cy="146" r="13" fill="#f3e2d9"/>
+    <text x="818" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#b04a2a">5</text>
+    <text x="810" y="188" font-size="15" font-weight="700" fill="#faf7f2">发布</text>
+    <text x="810" y="212" font-size="11.5" fill="#cfc8bd">git add .</text>
+    <text x="810" y="231" font-size="11.5" fill="#cfc8bd">git commit -m "新文章"</text>
+    <text x="810" y="250" font-size="11.5" fill="#cfc8bd">git push</text>
+    <text x="810" y="269" font-size="11.5" fill="#cfc8bd">1~2 分钟后自动上线</text>
+  </g>
+
+  <!-- 连接箭头 -->
+  <g stroke="#cfc2ad" stroke-width="2">
+    <line x1="212" y1="205" x2="224" y2="205"/>
+    <line x1="400" y1="205" x2="412" y2="205"/>
+    <line x1="588" y1="205" x2="600" y2="205"/>
+    <line x1="776" y1="205" x2="788" y2="205"/>
+  </g>
+
+  <g>
+    <rect x="40" y="330" width="920" height="62" rx="10" fill="#fffdf9" stroke="#e4dbcc" stroke-width="1.5"/>
+    <text x="62" y="356" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" font-weight="700" fill="#b04a2a">记住一件事</text>
+    <text x="62" y="378" font-family="'Noto Sans SC','Microsoft YaHei',sans-serif" font-size="12" fill="#3d3933">文件名里的日期和英文短名共同决定了文章的网址和排序；发布之后不要改文件名，否则旧链接会变成 404。</text>
+  </g>
+</svg>

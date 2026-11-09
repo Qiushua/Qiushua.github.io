@@ -1,0 +1,110 @@
+---
+layout: default
+---
+{%- assign words = page.content | number_of_words %}
+{%- assign minutes = words | divided_by: site.words_per_minute | plus: 1 %}
+{%- if minutes > 60 %}{% assign minutes = 60 %}{% endif %}
+
+<div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+<div class="container container--wide">
+  <nav class="breadcrumb" aria-label="面包屑导航">
+    <a href="{{ '/' | relative_url }}">首页</a>
+    {%- if page.categories.size > 0 %}
+      {%- assign first_cat = page.categories | first %}
+    <span class="breadcrumb__sep">/</span>
+    <a href="{{ '/categories/' | relative_url }}#{{ first_cat | slugify }}">{{ first_cat }}</a>
+    {%- endif %}
+    <span class="breadcrumb__sep">/</span>
+    <span class="breadcrumb__current" aria-current="page">{{ page.title }}</span>
+  </nav>
+
+  <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+    <header class="post__header">
+      {%- if page.categories.size > 0 %}
+      <ul class="post__cats">
+        {%- for cat in page.categories %}
+        <li><a class="tag tag--cat" href="{{ '/categories/' | relative_url }}#{{ cat | slugify }}">{{ cat }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+
+      <h1 class="post__title" itemprop="headline">{{ page.title }}</h1>
+
+      {%- if page.description %}
+      <p class="post__lede">{{ page.description }}</p>
+      {%- endif %}
+
+      <div class="post__meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {{ page.date | date: "%Y 年 %m 月 %d 日" }}
+        </time>
+        {%- if page.updated and page.updated != page.date %}
+        <span class="meta-sep">·</span>
+        <span class="post__updated">最后更新 {{ page.updated | date: "%Y-%m-%d" }}</span>
+        {%- endif %}
+        <span class="meta-sep">·</span>
+        <span>约 {{ minutes }} 分钟读完</span>
+        {%- if page.author %}
+        <span class="meta-sep">·</span>
+        <span itemprop="author">{{ page.author }}</span>
+        {%- endif %}
+      </div>
+    </header>
+
+    <div class="post__layout">
+      {%- if page.toc != false %}
+      <aside class="post__toc" aria-label="文章目录">
+        <div class="toc" id="toc">
+          <p class="toc__title">本文目录</p>
+          <nav class="toc__nav" id="tocNav"></nav>
+        </div>
+      </aside>
+      {%- endif %}
+
+      <div class="post__body prose" id="postBody" itemprop="articleBody">
+        {{ content }}
+
+        {%- if page.tags.size > 0 %}
+        <div class="post__tags">
+          <span class="post__tags-label">标签</span>
+          {%- for tag in page.tags %}
+          <span class="tag">#{{ tag }}</span>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+
+        <p class="post__license">
+          {%- if page.license %}
+          {{ page.license }}
+          {%- else %}
+          本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license noopener" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。
+          转载请注明作者与出处。
+          {%- endif %}
+        </p>
+      </div>
+    </div>
+
+    <nav class="post-nav" aria-label="上一篇与下一篇">
+      {%- if page.previous %}
+      <a class="post-nav__item post-nav__item--prev" href="{{ page.previous.url | relative_url }}">
+        <span class="post-nav__label">← 上一篇</span>
+        <span class="post-nav__title">{{ page.previous.title }}</span>
+      </a>
+      {%- else %}
+      <span class="post-nav__item post-nav__item--empty"></span>
+      {%- endif %}
+
+      {%- if page.next %}
+      <a class="post-nav__item post-nav__item--next" href="{{ page.next.url | relative_url }}">
+        <span class="post-nav__label">下一篇 →</span>
+        <span class="post-nav__title">{{ page.next.title }}</span>
+      </a>
+      {%- else %}
+      <span class="post-nav__item post-nav__item--empty"></span>
+      {%- endif %}
+    </nav>
+
+    <p class="post__back"><a href="{{ '/posts/' | relative_url }}">← 返回文章列表</a></p>
+  </article>
+</div>
